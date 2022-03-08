@@ -1,24 +1,43 @@
-# README
+# Octo Events
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Octo Events is an application that listens to Github Events via webhooks and expose by an api for later use.
 
-Things you may want to cover:
+## Dependecies
 
-* Ruby version
+- ruby 3.1.0
+- rails 7.0.2.2
+- bundler
+- postgres
 
-* System dependencies
+### Setup Github with webhooks
+- https://docs.github.com/en/developers/webhooks-and-events/webhooks/about-webhooks
 
-* Configuration
+### Generate a token
+- ruby -rsecurerandom -e 'puts SecureRandom.hex(20)'
 
-* Database creation
+### Set an ENV with the genrated token
+```
+export SECRET_TOKEN=7487258d4aae187f087b8d161230fd52eec203f8a
+```
 
-* Database initialization
+## Running Application
 
-* How to run the test suite
+### Install dependencies
+```
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Setup database
+```
+rails db:create && rails db:migrate
+```
 
-* Deployment instructions
+### Start application
+```
+rails s
+```
 
-* ...
+## Running tests
+```
+rspec
+```
