@@ -1,9 +1,6 @@
 class EventsController < ApplicationController
   def create
-    request.body.rewind
-    payload_body = request.body.read
-    verify_signature(payload_body)
-
+    verify_signature
     result = EventService.call(event_params, issue_params)
 
     if result.errors.empty?

@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::API
-  def verify_signature(payload_body)
+  before_action :verify_signature
+
+  def verify_signature
+    request.body.rewind
+    payload_body = request.body.read
+
     signature = 'sha256=' + OpenSSL::HMAC.hexdigest(
       OpenSSL::Digest.new('sha256'),
       ENV['SECRET_TOKEN'],
